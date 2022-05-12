@@ -1,0 +1,31 @@
+name: Local CI test
+on: [push, pull_request]
+jobs:
+  local-test:
+    runs-on: self-hosted
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Compile the source code to lib
+        run: |
+          ls ${{ github.workspace }}
+          export CXX=/usr/bin/g++
+          sed 's/install/develop/g' Makefile
+          make -j`nproc`
+          cp tvm/lib/* .
+      - run: echo "This job's status is ${{ job.status }}."
+      - name: Setup EDA tools and run tests
+        run: |
+          ls ${{ github.workspace }}
+          unset LM_LICENSE_FILE
+          export XILINXD_LICENSE_FILE=2100@flex.ece.cornell.edu
+          export VITIS=/opt/xilinx/Xilinx_Vivado_vitis_2019.2/Vitis/2019.2
+          export XDEVICE=/opt/xilinx/platforms/xilinx_u280_xdma_201920_3/xilinx_u280_xdma_201920_3.xpfm
+          source $VITIS/settings64.sh
+          source /opt/xilinx/xrt/setup.sh
+          export LOCAL_CI_TEST=1
+          python tests/test_cont_integration.py

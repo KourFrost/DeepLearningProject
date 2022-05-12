@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: nngen
+Version: 1.3.3
+Summary: A Fully-Customizable Hardware Synthesis Compiler for Deep Neural Network
+Home-page: https://github.com/NNgen/nngen
+Author: Shinya Takamaeda-Yamazaki
+License: Apache License 2.0
+Description: val 
+Keywords: Neural Network,Deep Learning,FPGA,High-Level Synthesis
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Provides-Extra: test

@@ -1,0 +1,7 @@
+veriloggen>=2.1.0
+numpy>=1.17
+onnx>=1.9.0
+
+[test]
+pytest>=3.8.1
+pytest-pythonpath>=0.7.3

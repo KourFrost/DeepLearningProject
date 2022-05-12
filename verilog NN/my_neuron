@@ -1,0 +1,77 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1110-g18392a46)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001b59fd9df70 .scope module, "neuron_tb" "neuron_tb" 2 1;
+ .timescale 0 0;
+v000001b59ff34a90_0 .var/s "b", 31 0;
+v000001b59ff34090_0 .net/s "out_val", 31 0, L_000001b59ff34bd0;  1 drivers
+v000001b59ff341d0_0 .var/s "w1", 31 0;
+v000001b59ff34770_0 .var/s "w2", 31 0;
+v000001b59ff34270_0 .var/s "x1", 31 0;
+v000001b59ff34b30_0 .var/s "x2", 31 0;
+S_000001b59fd9e100 .scope module, "n" "neuron" 2 21, 3 1 0, S_000001b59fd9df70;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 32 "out_val";
+    .port_info 1 /INPUT 32 "b";
+    .port_info 2 /INPUT 32 "x1";
+    .port_info 3 /INPUT 32 "w1";
+    .port_info 4 /INPUT 32 "x2";
+    .port_info 5 /INPUT 32 "w2";
+L_000001b59ff7f8d8 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v000001b59fd9e290_0 .net *"_ivl_12", 31 0, L_000001b59ff7f8d8;  1 drivers
+v000001b59ff030e0_0 .net *"_ivl_15", 31 0, L_000001b59ff34c70;  1 drivers
+v000001b59fd9e330_0 .net/s *"_ivl_17", 31 0, L_000001b59ff34590;  1 drivers
+v000001b59ff278d0_0 .net/s *"_ivl_18", 31 0, L_000001b59ff348b0;  1 drivers
+v000001b59ff27970_0 .net/s *"_ivl_5", 31 0, L_000001b59ff34950;  1 drivers
+v000001b59ff27a10_0 .net/s *"_ivl_6", 31 0, L_000001b59ff34310;  1 drivers
+v000001b59ff33e10_0 .net/s *"_ivl_9", 31 0, L_000001b59ff346d0;  1 drivers
+v000001b59ff34810_0 .net/s "b", 31 0, v000001b59ff34a90_0;  1 drivers
+L_000001b59ff7f848 .functor BUFT 1, C4<00000000000000101011011111001110>, C4<0>, C4<0>, C4<0>;
+v000001b59ff33f50_0 .net/s "e", 31 0, L_000001b59ff7f848;  1 drivers
+L_000001b59ff7f890 .functor BUFT 1, C4<00000000000000010000000000000000>, C4<0>, C4<0>, C4<0>;
+v000001b59ff349f0_0 .net/s "one", 31 0, L_000001b59ff7f890;  1 drivers
+v000001b59ff33d70_0 .net/s "out_val", 31 0, L_000001b59ff34bd0;  alias, 1 drivers
+v000001b59ff34630_0 .net/s "w1", 31 0, v000001b59ff341d0_0;  1 drivers
+v000001b59ff34130_0 .net/s "w2", 31 0, v000001b59ff34770_0;  1 drivers
+v000001b59ff33ff0_0 .net/s "x1", 31 0, v000001b59ff34270_0;  1 drivers
+v000001b59ff34450_0 .net/s "x2", 31 0, v000001b59ff34b30_0;  1 drivers
+v000001b59ff344f0_0 .net "z", 31 0, L_000001b59ff343b0;  1 drivers
+L_000001b59ff34950 .arith/mult 32, v000001b59ff34270_0, v000001b59ff341d0_0;
+L_000001b59ff34310 .arith/sum 32, v000001b59ff34a90_0, L_000001b59ff34950;
+L_000001b59ff346d0 .arith/mult 32, v000001b59ff34b30_0, v000001b59ff34770_0;
+L_000001b59ff343b0 .arith/sum 32, L_000001b59ff34310, L_000001b59ff346d0;
+L_000001b59ff34c70 .arith/sub 32, L_000001b59ff7f8d8, L_000001b59ff343b0;
+L_000001b59ff34590 .arith/pow 32, L_000001b59ff7f848, L_000001b59ff34c70;
+L_000001b59ff348b0 .arith/sub 32, L_000001b59ff7f890, L_000001b59ff34590;
+L_000001b59ff34bd0 .arith/div.s 32, L_000001b59ff7f890, L_000001b59ff348b0;
+    .scope S_000001b59fd9df70;
+T_0 ;
+    %pushi/vec4 32768, 0, 32;
+    %store/vec4 v000001b59ff34a90_0, 0, 32;
+    %pushi/vec4 32768, 0, 32;
+    %store/vec4 v000001b59ff34270_0, 0, 32;
+    %pushi/vec4 32768, 0, 32;
+    %store/vec4 v000001b59ff341d0_0, 0, 32;
+    %pushi/vec4 4294934528, 0, 32;
+    %store/vec4 v000001b59ff34b30_0, 0, 32;
+    %pushi/vec4 22937, 0, 32;
+    %store/vec4 v000001b59ff34770_0, 0, 32;
+    %end;
+    .thread T_0;
+    .scope S_000001b59fd9df70;
+T_1 ;
+    %vpi_call 2 24 "$monitor", "At time %t, out:%f b:%f x1:%f w1:%f x2:%f w2:%f", $time, v000001b59ff34090_0, v000001b59ff34a90_0, v000001b59ff34270_0, v000001b59ff341d0_0, v000001b59ff34b30_0, v000001b59ff34770_0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    ".\neuron_tb.v";
+    ".\neuron.v";
